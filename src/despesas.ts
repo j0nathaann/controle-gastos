@@ -1,4 +1,4 @@
-import type { Despesa } from "./tipos";
+import type { Despesa, Categoria } from "./tipos";
 
 export function totalGasto(despesas: Despesa[]): number {
   return despesas.reduce((soma, despesa) => soma + despesa.valor, 0);
