@@ -215,6 +215,3 @@ describe("removerDespesa", () => {
     expect(novasDespesas[0].id).toBe("1");
   });
 });
-export function removerDespesa(despesas: Despesa[], id: string): Despesa[] {
-  throw new Error("não implementado");
-}
