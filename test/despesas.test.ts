@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { totalGasto, maiorDespesa, adicionarDespesa } from "../src/despesas";
+import { totalGasto, maiorDespesa, adicionarDespesa, removerDespesa } from "../src/despesas";
 import type { Despesa } from "../src/tipos";
 
 describe("totalGasto", () => {
@@ -149,3 +149,72 @@ it("retorna um novo array com a despesa adicionada", () => {
     ).toThrow();
   });
 });
+describe("removerDespesa", () => {
+  it("retorna um novo array sem a despesa com o ID informado", () => {
+    const despesas: Despesa[] = [
+      {
+        id: "1",
+        descricao: "Almoço",
+        valor: 50,
+        categoria: "alimentacao",
+        mes: 1,
+      },
+      {
+        id: "2",
+        descricao: "Uber",
+        valor: 30,
+        categoria: "transporte",
+        mes: 1,
+      },
+    ];
+
+    const novasDespesas = removerDespesa(despesas, "1");
+
+    expect(novasDespesas.length).toBe(1);
+    expect(novasDespesas[0].id).toBe("2");
+  });
+
+  it("não altera o array original", () => {
+    const despesas: Despesa[] = [
+      {
+        id: "1",
+        descricao: "Almoço",
+        valor: 50,
+        categoria: "alimentacao",
+        mes: 1,
+      },
+      {
+        id: "2",
+        descricao: "Uber",
+        valor: 30,
+        categoria: "transporte",
+        mes: 1,
+      },
+    ];
+
+    const original = despesas.length;
+    removerDespesa(despesas, "1");
+
+    expect(despesas.length).toBe(original);
+  });
+
+  it("retorna uma cópia igual se o ID não existir", () => {
+    const despesas: Despesa[] = [
+      {
+        id: "1",
+        descricao: "Almoço",
+        valor: 50,
+        categoria: "alimentacao",
+        mes: 1,
+      },
+    ];
+
+    const novasDespesas = removerDespesa(despesas, "999");
+
+    expect(novasDespesas.length).toBe(1);
+    expect(novasDespesas[0].id).toBe("1");
+  });
+});
+export function removerDespesa(despesas: Despesa[], id: string): Despesa[] {
+  throw new Error("não implementado");
+}
