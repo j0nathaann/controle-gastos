@@ -12,3 +12,6 @@ export function maiorDespesa(despesas: Despesa[]): Despesa | undefined {
     despesa.valor > maior.valor ? despesa : maior
   );
 }
+export function adicionarDespesa(despesas: Despesa[], nova: Despesa): Despesa[] {
+  throw new Error("não implementado");
+}
