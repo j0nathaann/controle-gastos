@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { totalGasto, maiorDespesa, adicionarDespesa, removerDespesa } from "../src/despesas";
+import { totalGasto, maiorDespesa, adicionarDespesa, removerDespesa, despesasDaCategoria } from "../src/despesas";
 import type { Despesa } from "../src/tipos";
 
 describe("totalGasto", () => {
@@ -213,5 +213,54 @@ describe("removerDespesa", () => {
 
     expect(novasDespesas.length).toBe(1);
     expect(novasDespesas[0].id).toBe("1");
+  });
+});
+describe("despesasDaCategoria", () => {
+  it("retorna só as despesas da categoria informada", () => {
+    const despesas: Despesa[] = [
+      {
+        id: "1",
+        descricao: "Almoço",
+        valor: 50,
+        categoria: "alimentacao",
+        mes: 1,
+      },
+      {
+        id: "2",
+        descricao: "Uber",
+        valor: 30,
+        categoria: "transporte",
+        mes: 1,
+      },
+      {
+        id: "3",
+        descricao: "Pizza",
+        valor: 40,
+        categoria: "alimentacao",
+        mes: 1,
+      },
+    ];
+
+    const alimentacao = despesasDaCategoria(despesas, "alimentacao");
+
+    expect(alimentacao.length).toBe(2);
+    expect(alimentacao[0].id).toBe("1");
+    expect(alimentacao[1].id).toBe("3");
+  });
+
+  it("retorna array vazio se nenhuma despesa da categoria existir", () => {
+    const despesas: Despesa[] = [
+      {
+        id: "1",
+        descricao: "Almoço",
+        valor: 50,
+        categoria: "alimentacao",
+        mes: 1,
+      },
+    ];
+
+    const transporte = despesasDaCategoria(despesas, "transporte");
+
+    expect(transporte.length).toBe(0);
   });
 });
