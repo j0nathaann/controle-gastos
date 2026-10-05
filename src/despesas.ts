@@ -1,5 +1,5 @@
 import type { Despesa } from "./tipos";
 
 export function totalGasto(despesas: Despesa[]): number {
-  throw new Error("não implementado");
+  return despesas.reduce((soma, despesa) => soma + despesa.valor, 0);
 }
