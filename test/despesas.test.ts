@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { totalGasto, maiorDespesa, adicionarDespesa, removerDespesa, despesasDaCategoria } from "../src/despesas";
 import type { Despesa } from "../src/tipos";
+import { descricaoCategoria } from "../src/relatorio";
 
 describe("totalGasto", () => {
   it("retorna a soma de todas as despesas", () => {
@@ -262,5 +263,22 @@ describe("despesasDaCategoria", () => {
     const transporte = despesasDaCategoria(despesas, "transporte");
 
     expect(transporte.length).toBe(0);
+  });
+});
+describe("descricaoCategoria", () => {
+  it("retorna 'Alimentação' para 'alimentacao'", () => {
+    expect(descricaoCategoria("alimentacao")).toBe("Alimentação");
+  });
+
+  it("retorna 'Transporte' para 'transporte'", () => {
+    expect(descricaoCategoria("transporte")).toBe("Transporte");
+  });
+
+  it("retorna 'Lazer' para 'lazer'", () => {
+    expect(descricaoCategoria("lazer")).toBe("Lazer");
+  });
+
+  it("retorna 'Moradia' para 'moradia'", () => {
+    expect(descricaoCategoria("moradia")).toBe("Moradia");
   });
 });
