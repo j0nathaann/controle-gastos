@@ -5,7 +5,7 @@ Um módulo TypeScript para registrar e analisar despesas mensais por categoria.
 ## Como instalar
 
 ```bash
-git clone https://github.com/[seu-usuario]/controle-gastos.git
+git clone https://github.com/j0nathaann/controle-gastos.git
 cd controle-gastos
 npm install
 ```
